@@ -1,14 +1,15 @@
 import { Given, When, Then } from "@wdio/cucumber-framework";
+import home_page from "../pageobjects/landing_page";
 
-import Page from "../pageobjects/page";
+const homePage = new home_page();
 
-Given(/^User is on Home Page$/, async (Page) => {
-  Page.open();
+Given(/^User is on Home Page$/, async () => {
+  await homePage.open();
+  console.log("Current URL:", await browser.getUrl());
 });
 
-When(/^User filters for <category>$/, async (category) => {
-  (await $("#input.search.input-text")).click;
-  (await $("")).addValue;
+When(/^User filters for {string}$/, async (category: string) => {
+  homePage.filterByCategory(category);
 });
 
 Then(/^User sees <resultsbanner> for category$/, async (resultsbanner) => {

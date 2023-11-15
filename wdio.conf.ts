@@ -30,7 +30,7 @@ export const config: Options.Testrunner = {
   // then the current working directory is where your `package.json` resides, so `wdio`
   // will be called from there.
   //
-  specs: ["./features/**/*.feature"],
+  specs: ["./features/**/Filter.feature"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -60,6 +60,7 @@ export const config: Options.Testrunner = {
   capabilities: [
     {
       browserName: "chrome",
+      acceptInsecureCerts: true,
     },
   ],
 
@@ -94,7 +95,7 @@ export const config: Options.Testrunner = {
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
-  baseUrl: "http://localhost",
+  // baseUrl: "https://localhost",
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,
@@ -110,7 +111,7 @@ export const config: Options.Testrunner = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  // services: [],
+  // services: ['chromedriver'],
   //
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -138,7 +139,7 @@ export const config: Options.Testrunner = {
   // If you are using Cucumber you need to specify the location of your step definitions.
   cucumberOpts: {
     // <string[]> (file/dir) require files before executing features
-    require: ["./features/step-definitions/*.ts"],
+    require: ["./features/step-definitions/filter_steps.ts"],
     // <boolean> show full backtrace for errors
     backtrace: false,
     // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
